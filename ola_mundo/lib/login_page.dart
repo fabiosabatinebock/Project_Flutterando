@@ -1,4 +1,6 @@
+//import 'dart:js_interop';
 import 'package:flutter/material.dart';
+import 'package:ola_mundo/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,10 +13,8 @@ class _LoginPageState extends State<LoginPage> {
   String email = '';
   String password = '';
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
+Widget _body(){
+  return SingleChildScrollView(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -23,6 +23,14 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Container(
+                  width: 200,
+                  height: 200,
+                  child: Image.asset('assets/images/logo.png'),
+                ),
+                Container(
+                  height: 20
+                ),
                 TextField(
                   onChanged: (text){
                     email = text;
@@ -48,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   onPressed: () {
                     if (email == 'fabiosabatinejuina@gmail.com' && password == '123') {
-                      print('Correto');
+                      Navigator.of(context).pushReplacementNamed('/home');
                     } else {
                       print('Login inválido.');
                     }
@@ -59,7 +67,26 @@ class _LoginPageState extends State<LoginPage> {
               ),
           ),
         ),
-      ),
+      );
+}
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Image.asset(
+              'assets/images/background.png',
+              fit: BoxFit.cover,
+            )),
+          Container(
+            color: Colors.black.withOpacity(0.4),
+          ),
+          _body(),
+        ],
+      ) 
     );
   }
 }

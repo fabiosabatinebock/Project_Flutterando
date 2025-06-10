@@ -31,38 +31,51 @@ Widget _body(){
                 Container(
                   height: 20
                 ),
-                TextField(
-                  onChanged: (text){
-                    email = text;
-                  },
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder()
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        TextField(
+                          onChanged: (text){
+                            email = text;
+                          },
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            labelText: 'Email',
+                            border: OutlineInputBorder()
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        TextField(
+                          onChanged: (text){
+                            password = text;
+                          },
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                            border: OutlineInputBorder()
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        ElevatedButton(                          
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.orange,
+                            foregroundColor: Colors.white,
+                          ),
+                          onPressed: () {
+                            if (email == 'fabiosabatinejuina@gmail.com' && password == '123') {
+                              Navigator.of(context).pushReplacementNamed('/home');
+                            } else {
+                              print('Login inválido.');
+                            }
+                          },
+                          child: Text('Entrar'),
+                        ),
+                    ],
                   ),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  onChanged: (text){
-                    password = text;
-                  },
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder()
-                  ),
-                ),
-                SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () {
-                    if (email == 'fabiosabatinejuina@gmail.com' && password == '123') {
-                      Navigator.of(context).pushReplacementNamed('/home');
-                    } else {
-                      print('Login inválido.');
-                    }
-                  },
-                  child: Text('Entrar'),
-                ),              
+                  )
+                ),                              
                 ],
               ),
           ),
